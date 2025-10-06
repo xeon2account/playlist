@@ -1,84 +1,33 @@
-import { playlist } from './audiodb.js';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Song4u Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="player-container">
+    <div class="player-card">
+      <img id="thumbnail" src="" alt="Song Thumbnail" class="thumbnail">
+      <h2 id="songName">Loading...</h2>
 
-const audio = document.getElementById('audio');
-const playPauseBtn = document.getElementById('playPauseBtn');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const timeline = document.getElementById('timeline');
-const currentTimeDisplay = document.getElementById('currentTime');
-const durationDisplay = document.getElementById('duration');
-const thumbnail = document.getElementById('thumbnail');
-const songName = document.getElementById('songName');
+      <audio id="audio" preload="metadata"></audio>
 
-let currentTrack = 0;
-let isPlaying = false;
+      <div class="controls">
+        <button id="prevBtn" class="ctrl-btn">⏮</button>
+        <button id="playPauseBtn" class="ctrl-btn">▶️</button>
+        <button id="nextBtn" class="ctrl-btn">⏭</button>
+      </div>
 
-function loadTrack(index) {
-  currentTrack = index;
-  const track = playlist[currentTrack];
-  audio.src = track.src;
-  thumbnail.src = track.thumb;
-  songName.textContent = track.name;
-  audio.load();
-}
+      <div class="timeline">
+        <span id="currentTime">0:00</span>
+        <input type="range" id="timeline" value="0" min="0" step="1">
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+  </div>
 
-function togglePlayPause() {
-  if (!isPlaying) {
-    audio.play();
-    playPauseBtn.textContent = '⏸️';
-  } else {
-    audio.pause();
-    playPauseBtn.textContent = '▶️';
-  }
-  isPlaying = !isPlaying;
-}
-
-function nextTrack() {
-  currentTrack = (currentTrack + 1) % playlist.length;
-  loadTrack(currentTrack);
-  if (isPlaying) audio.play();
-}
-
-function prevTrack() {
-  currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-  loadTrack(currentTrack);
-  if (isPlaying) audio.play();
-}
-
-function formatTime(seconds) {
-  const min = Math.floor(seconds / 60);
-  const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
-  return `${min}:${sec}`;
-}
-
-audio.addEventListener('loadedmetadata', () => {
-  timeline.max = Math.floor(audio.duration);
-  durationDisplay.textContent = formatTime(audio.duration);
-});
-
-audio.addEventListener('timeupdate', () => {
-  timeline.value = Math.floor(audio.currentTime);
-  currentTimeDisplay.textContent = formatTime(audio.currentTime);
-});
-
-timeline.addEventListener('input', () => {
-  audio.currentTime = timeline.value;
-});
-
-audio.addEventListener('ended', () => nextTrack());
-
-playPauseBtn.addEventListener('click', togglePlayPause);
-nextBtn.addEventListener('click', nextTrack);
-prevBtn.addEventListener('click', prevTrack);
-
-loadTrack(currentTrack);
-
-// 🔒 Prevent right-click, F12, and devtools
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if (
-    e.key === 'F12' ||
-    (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
-    (e.ctrlKey && e.shiftKey && ['i', 'j'].includes(e.key.toLowerCase()))
-  ) e.preventDefault();
-});
+  <script type="module" src="script.js"></script>
+</body>
+</html>
