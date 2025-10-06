@@ -1,60 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Song4U — Playlist</title>
-
-  <!-- Font (optional) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="./style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Song4u Player</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <!-- LEFT: Playlist -->
-    <aside id="songList" class="sidebar">
-      <div class="sidebar-header">
-        <div class="logo">SB</div>
-        <div class="title">Playlist</div>
-      </div>
-      <!-- Search and list are injected by script -->
-    </aside>
+  <div class="player-container">
+    <div class="player-card">
+      <img id="thumbnail" src="" alt="Song Thumbnail" class="thumbnail">
+      <h2 id="songName">Loading...</h2>
 
-    <!-- CENTER: Player card -->
-    <main class="player-area">
-      <div class="player-card">
-        <h3 class="now-playing-label">Now Playing</h3>
+      <audio id="audio" preload="metadata"></audio>
 
-        <img id="thumbnail" class="thumb" src="" alt="cover art">
-
-        <div id="songName" class="song-title">Loading...</div>
-        <div id="songArtist" class="song-artist"></div>
-
-        <div class="controls-row">
-          <button id="prevBtn" class="control">⏮</button>
-          <button id="playBtn" class="control big">▶</button>
-          <button id="pauseBtn" class="control big">⏸</button>
-          <button id="nextBtn" class="control">⏭</button>
-        </div>
-
-        <div class="progress-wrapper">
-          <input id="timeline" type="range" min="0" value="0" />
-          <div class="time-row">
-            <span id="currentTime">0:00</span>
-            <span id="duration">0:00</span>
-          </div>
-        </div>
-
-        <div id="loading" class="loading">Loading…</div>
-
-        <audio id="audio"></audio>
+      <div class="controls">
+        <button id="prevBtn" class="ctrl-btn">⏮</button>
+        <button id="playPauseBtn" class="ctrl-btn">▶️</button>
+        <button id="nextBtn" class="ctrl-btn">⏭</button>
       </div>
 
-      <footer class="footer">© 2025 Aloisious Benny</footer>
-    </main>
+      <div class="timeline">
+        <span id="currentTime">0:00</span>
+        <input type="range" id="timeline" value="0" min="0" step="1">
+        <span id="duration">0:00</span>
+      </div>
+    </div>
   </div>
 
-  <script type="module" src="./script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
