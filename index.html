@@ -2,32 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Song4u</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Song4u Player</title>
   <link rel="stylesheet" href="style.css">
+  <meta name="keywords" content="Song4u, Music, Player, Web App">
+  <meta name="author" content="DOTSERMODZ">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Favorite Playlist " />
+  <meta property="og:description" content="Song4u - listen to My Favorite Songs" />
+  <meta property="og:url" content="https://alosiousbenny.vercel.app/Playlist" />
+  <meta name="description" content="Song4u - listen to My Favorite Songs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" href="https://files.catbox.moe/4tr6ip.jpg" type="image/x-icon">  
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://files.catbox.moe/jkwu5t.jpg"> 
+  <meta name="twitter:image" content="https://files.catbox.moe/jkwu5t.jpg">
+
 </head>
 <body>
-  <div class="player-container">
-    <div class="player-card">
-      <img id="thumbnail" src="" alt="Song Thumbnail" class="thumbnail">
-      <h2 id="songName">Loading...</h2>
+  <header>
+    <i id="menuToggle" class="fa fa-bars"></i>
+    <h1>Song<span>4u</span></h1>
+  </header>
 
-      <audio id="audio" preload="metadata"></audio>
+  <div id="songList" class="song-list hidden"></div>
 
-      <div class="controls">
-        <button id="prevBtn" class="ctrl-btn">⏮</button>
-        <button id="playPauseBtn" class="ctrl-btn">▶️</button>
-        <button id="nextBtn" class="ctrl-btn">⏭</button>
-      </div>
+  <div class="player">
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+    </div>
+    <h2>Now Playing</h2>
+    <img id="thumbnail" src="" alt="Thumbnail" class="thumbnail">
+    <p id="songName"></p>
 
-      <div class="timeline">
+    <div class="controls">
+      <i id="prevBtn" class="fa-solid fa-backward-step"></i>
+      <i id="playBtn" class="fa-solid fa-play"></i>
+      <i id="pauseBtn" class="fa-solid fa-pause" style="display:none;"></i>
+      <i id="nextBtn" class="fa-solid fa-forward-step"></i>
+    </div>
+
+    <div class="timeline-container">
+      <input type="range" id="timeline" class="timeline" value="0" min="0" step="1">
+      <div class="time-display">
         <span id="currentTime">0:00</span>
-        <input type="range" id="timeline" value="0" min="0" step="1">
         <span id="duration">0:00</span>
       </div>
     </div>
+
+    <audio id="audio"></audio>
   </div>
 
-  <script type="module" src="script.js"></script>
+  <footer>
+    <p>&copy; 2025 <a href="https://alosious-benny.vercel.app">Alosious Benny</a></p>
+  </footer>
+<script src="audiodb.js" type="module"></script>
+<script src="script.js" type="module"></script>
+
 </body>
 </html>
