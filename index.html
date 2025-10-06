@@ -2,344 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DOT007 - Alosious Benny</title>
-  <meta name="description" content="Explore the personal portfolio of Alosious Benny, a passionate developer and creative problem-solver. Showcasing projects, skills, and experience in full-stack development, UI/UX design, and emerging technologies."/>
-  <meta name="author" content="DOTSERMODZ"/>
-  <meta property="og:title" content="Alosious Benny"/>
-  <meta property="og:description" content="Welcome to the official portfolio of Alosious Benny. Dive into a curated collection of innovative projects, tech insights, and personal achievements in software development and digital design."/>
-  <meta property="og:url" content="https://alosiousbenny.vercel.app/"/>
-  <meta property="og:site_name" content="Alosious Benny, Personal Website"/>
-  <meta property="og:image" content="https://files.catbox.moe/jkwu5t.jpg"/>
-  <meta property="og:type" content="website"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Alosious Benny"/>
-  <meta name="twitter:description" content="Welcome to the official portfolio of Alosious Benny. Dive into a curated collection of innovative projects, tech insights, and personal achievements in software development and digital design."/>
-  <meta name="twitter:image" content="https://files.catbox.moe/jkwu5t.jpg"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Song4U — Playlist</title>
 
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="icon" href="https://files.catbox.moe/alaz7q.png" />
+  <!-- Font (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome (for icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Inter-ish webfont preload (optional) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#94a3b8;
-      --accent:#7c3aed;
-      --glass: rgba(255,255,255,0.04);
-      --white: #f8fafc;
-    }
-    [data-theme="light"]{
-      --bg:#f8fafc;
-      --card:#ffffff;
-      --muted:#475569;
-      --accent:#6d28d9;
-      --glass: rgba(15,23,42,0.04);
-      --white:#0b1220;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:linear-gradient(180deg,var(--bg), #071027 120%);
-      color:var(--white);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
-
-    .container{max-width:1100px;margin:0 auto;padding:28px;}
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:28px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      color:inherit;
-    }
-    .brand img{width:44px;height:44px;border-radius:8px;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
-    .brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:0.2px}
-    .brand p{font-size:12px;margin:0;color:var(--muted)}
-
-    .controls{display:flex;gap:10px;align-items:center}
-    .btn{
-      background:var(--glass);
-      border:1px solid rgba(255,255,255,0.04);
-      color:var(--white);
-      padding:8px 12px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:600;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:500}
-
-    main{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
-    @media(max-width:980px){ main{grid-template-columns:1fr; } .right-col{order:2} .left-col{order:1} }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:14px;
-      padding:18px;
-      box-shadow:0 6px 30px rgba(2,6,23,0.6);
-      border:1px solid rgba(255,255,255,0.03);
-    }
-
-    /* HERO */
-    .hero{
-      display:flex;
-      gap:18px;
-      align-items:flex-start;
-    }
-    .avatar{
-      width:120px;height:120px;border-radius:14px;flex-shrink:0;
-      object-fit:cover;border:1px solid rgba(255,255,255,0.06);
-      box-shadow:0 10px 30px rgba(2,6,23,0.6);
-    }
-    .hero h2{margin:0;font-size:26px}
-    .hero p.lead{margin:8px 0 0;color:var(--muted);max-width:70%}
-
-    /* Social */
-    .socials{display:flex;gap:10px;margin-top:12px}
-    .socials a{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--muted);font-weight:600;border:1px solid rgba(255,255,255,0.02);background:transparent}
-    .socials a .fab{width:18px;text-align:center}
-
-    /* Projects / playlist */
-    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
-    @media(max-width:640px){ .projects-grid{grid-template-columns:1fr} }
-
-    .project{
-      display:flex;gap:12px;align-items:flex-start;
-      padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .project img{width:84px;height:64px;border-radius:8px;object-fit:cover;flex-shrink:0}
-    .project h4{margin:0;font-size:15px}
-    .project p{margin:6px 0 0;color:var(--muted);font-size:13px}
-
-    /* Right column (about / skills / contact) */
-    .right-col .meta-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-    .skills{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);font-size:13px;color:var(--muted)}
-
-    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:30px}
-
-    /* small utilities */
-    .muted{color:var(--muted);font-size:13px}
-    a.plain{color:inherit;text-decoration:none}
-    .tag{font-size:12px;color:var(--muted);padding:4px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.02);background:transparent}
-
-    /* playlist style (visual) */
-    .playlist{
-      margin-top:12px;
-      display:flex;flex-direction:column;gap:10px;
-    }
-    .track{
-      display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)
-    }
-    .track .cover{width:56px;height:56px;border-radius:8px;object-fit:cover}
-    .track h5{margin:0;font-size:14px}
-    .track p{margin:4px 0 0;color:var(--muted);font-size:12px}
-  </style>
+  <link rel="stylesheet" href="./style.css" />
 </head>
-<body data-theme="dark">
-  <div class="container">
-    <header>
-      <a class="brand" href="/">
-        <img src="https://files.catbox.moe/alaz7q.png" alt="logo" />
-        <div>
-          <h1>DOT007</h1>
-          <p>Alosious Benny — Developer & Designer</p>
-        </div>
-      </a>
-
-      <div class="controls">
-        <button id="themeToggle" class="btn" title="Toggle theme">
-          <i class="fa-solid fa-sun" id="themeIcon"></i>
-          <span id="themeLabel">Dark</span>
-        </button>
-        <a class="btn secondary" href="#contact"><i class="fa-solid fa-envelope"></i>Contact</a>
+<body>
+  <div class="wrap">
+    <!-- LEFT: Playlist -->
+    <aside id="songList" class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">SB</div>
+        <div class="title">Playlist</div>
       </div>
-    </header>
+      <!-- Search and list are injected by script -->
+    </aside>
 
-    <main>
-      <section class="left-col">
-        <div class="card hero">
-          <img class="avatar" src="https://files.catbox.moe/jkwu5t.jpg" alt="Alosious avatar" />
-          <div style="flex:1">
-            <h2>Alosious Benny <span class="tag" style="margin-left:8px">DOT007</span></h2>
-            <p class="lead">Full-stack developer, UI/UX tinkerer, and audio/playlist enthusiast. I build human-friendly interfaces and small, delightful web apps.</p>
+    <!-- CENTER: Player card -->
+    <main class="player-area">
+      <div class="player-card">
+        <h3 class="now-playing-label">Now Playing</h3>
 
-            <div class="socials" aria-label="social links">
-              <a href="#" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
-              <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-              <a href="#" title="Twitter"><i class="fab fa-twitter"></i> Twitter</a>
-            </div>
+        <img id="thumbnail" class="thumb" src="" alt="cover art">
 
-            <div style="margin-top:16px;display:flex;align-items:center;gap:12px">
-              <a class="btn" href="#projects"><i class="fa-solid fa-play"></i> View Projects</a>
-              <a class="btn secondary" href="https://alosiousbenny.vercel.app/" target="_blank">Live Site</a>
-            </div>
+        <div id="songName" class="song-title">Loading...</div>
+        <div id="songArtist" class="song-artist"></div>
 
-            <div id="projects" class="projects-grid card" style="margin-top:18px; padding:12px;">
-              <!-- Project 1 -->
-              <article class="project">
-                <img src="https://files.catbox.moe/jkwu5t.jpg" alt="project" />
-                <div>
-                  <h4>DOT007 Player</h4>
-                  <p>Minimal audio player with playlist support and a clean UI.</p>
-                </div>
-              </article>
+        <div class="controls-row">
+          <button id="prevBtn" class="control">⏮</button>
+          <button id="playBtn" class="control big">▶</button>
+          <button id="pauseBtn" class="control big">⏸</button>
+          <button id="nextBtn" class="control">⏭</button>
+        </div>
 
-              <!-- Project 2 -->
-              <article class="project">
-                <img src="https://files.catbox.moe/alaz7q.png" alt="project" />
-                <div>
-                  <h4>Portfolio Redesign</h4>
-                  <p>Accessible portfolio template built with modern tooling.</p>
-                </div>
-              </article>
-
-              <!-- Project 3 -->
-              <article class="project">
-                <img src="https://files.catbox.moe/jkwu5t.jpg" alt="project" />
-                <div>
-                  <h4>Microblog</h4>
-                  <p>Small CMS for short posts and code snippets.</p>
-                </div>
-              </article>
-
-              <!-- Project 4 -->
-              <article class="project">
-                <img src="https://files.catbox.moe/jkwu5t.jpg" alt="project" />
-                <div>
-                  <h4>Experimental UI</h4>
-                  <p>Playful UI experiments with motion and accessibility in mind.</p>
-                </div>
-              </article>
-            </div>
-
-            <div class="card" style="margin-top:18px;">
-              <h3 style="margin:0 0 10px 0">Playlist</h3>
-              <div class="playlist" aria-label="playlist">
-                <div class="track">
-                  <img class="cover" src="https://files.catbox.moe/jkwu5t.jpg" alt="cover"/>
-                  <div>
-                    <h5>Ambient Mix</h5>
-                    <p class="muted">Chill / 34 min</p>
-                  </div>
-                </div>
-
-                <div class="track">
-                  <img class="cover" src="https://files.catbox.moe/alaz7q.png" alt="cover"/>
-                  <div>
-                    <h5>Lo-fi Study</h5>
-                    <p class="muted">Lo-fi / 46 min</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+        <div class="progress-wrapper">
+          <input id="timeline" type="range" min="0" value="0" />
+          <div class="time-row">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
           </div>
         </div>
 
-        <footer>
-          © <span id="year"></span> Alosious Benny — DOTSERMODZ · Built with ❤️
-        </footer>
-      </section>
+        <div id="loading" class="loading">Loading…</div>
 
-      <aside class="right-col">
-        <div class="card">
-          <div class="meta-row">
-            <div>
-              <h3 style="margin:0">About</h3>
-              <p class="muted" style="margin:6px 0 0 0;font-size:14px">I craft full-stack apps and design interfaces focused on clarity, performance and accessibility.</p>
-            </div>
-            <div style="text-align:right;">
-              <div class="tag">Available for work</div>
-            </div>
-          </div>
+        <audio id="audio"></audio>
+      </div>
 
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.02);margin:12px 0"/>
-
-          <h4 style="margin:0 0 8px 0">Skills</h4>
-          <div class="skills">
-            <span class="chip">React</span>
-            <span class="chip">Next.js</span>
-            <span class="chip">Node.js</span>
-            <span class="chip">Tailwind</span>
-            <span class="chip">UI/UX</span>
-            <span class="chip">TypeScript</span>
-          </div>
-
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.02);margin:14px 0"/>
-
-          <h4 style="margin:0 0 8px 0">Contact</h4>
-          <p class="muted" style="margin:0 0 10px 0">Want to collaborate, or ask about a project?</p>
-          <a id="contact" href="mailto:hi@alosiousbenny.vercel.app" class="btn" style="width:100%;justify-content:center"><i class="fa-solid fa-envelope"></i> Email me</a>
-
-          <div style="margin-top:12px" class="muted">
-            <div style="font-size:13px;margin-bottom:8px">Location</div>
-            <div>Kerala, India</div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:14px">
-          <h4 style="margin:0 0 10px 0">Quick links</h4>
-          <nav style="display:flex;flex-direction:column;gap:8px">
-            <a class="plain" href="#" style="padding:8px;border-radius:8px">Portfolio</a>
-            <a class="plain" href="#" style="padding:8px;border-radius:8px">Blog</a>
-            <a class="plain" href="#" style="padding:8px;border-radius:8px">Resume</a>
-            <a class="plain" href="#" style="padding:8px;border-radius:8px">Contact</a>
-          </nav>
-        </div>
-      </aside>
+      <footer class="footer">© 2025 Aloisious Benny</footer>
     </main>
-
   </div>
 
-  <script>
-    // Theme toggle (persist in localStorage)
-    (function(){
-      const root = document.documentElement;
-      const btn = document.getElementById('themeToggle');
-      const label = document.getElementById('themeLabel');
-      const icon = document.getElementById('themeIcon');
-      const stored = localStorage.getItem('ui-theme') || 'dark';
-      document.body.setAttribute('data-theme', stored);
-      label.textContent = stored === 'dark' ? 'Dark' : 'Light';
-      icon.className = stored === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-
-      btn.addEventListener('click', () => {
-        const current = document.body.getAttribute('data-theme') || 'dark';
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.body.setAttribute('data-theme', next);
-        localStorage.setItem('ui-theme', next);
-        label.textContent = next === 'dark' ? 'Dark' : 'Light';
-        icon.className = next === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-      });
-
-      // set copyright year
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
-  </script>
+  <script type="module" src="./script.js"></script>
 </body>
 </html>
