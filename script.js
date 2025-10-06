@@ -1,85 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+import { playlist } from './audiodb.js';
 
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at top, #0f0, #000);
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  overflow: hidden;
+const audio = document.getElementById('audio');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const timeline = document.getElementById('timeline');
+const currentTimeDisplay = document.getElementById('currentTime');
+const durationDisplay = document.getElementById('duration');
+const thumbnail = document.getElementById('thumbnail');
+const songName = document.getElementById('songName');
+
+let currentTrack = 0;
+let isPlaying = false;
+
+function loadTrack(index) {
+  currentTrack = index;
+  const track = playlist[currentTrack];
+  audio.src = track.src;
+  thumbnail.src = track.thumb;
+  songName.textContent = track.name;
+  audio.load();
 }
 
-.player-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+function togglePlayPause() {
+  if (!isPlaying) {
+    audio.play();
+    playPauseBtn.textContent = '⏸️';
+  } else {
+    audio.pause();
+    playPauseBtn.textContent = '▶️';
+  }
+  isPlaying = !isPlaying;
 }
 
-.player-card {
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid #0f0;
-  border-radius: 20px;
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-  box-shadow: 0 0 30px #0f0;
+function nextTrack() {
+  currentTrack = (currentTrack + 1) % playlist.length;
+  loadTrack(currentTrack);
+  if (isPlaying) audio.play();
 }
 
-.thumbnail {
-  width: 100%;
-  height: 250px;
-  border-radius: 15px;
-  object-fit: cover;
-  border: 2px solid #0f0;
+function prevTrack() {
+  currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+  loadTrack(currentTrack);
+  if (isPlaying) audio.play();
 }
 
-h2 {
-  font-size: 18px;
-  margin: 10px 0;
-  color: #0f0;
+function formatTime(seconds) {
+  const min = Math.floor(seconds / 60);
+  const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
+  return `${min}:${sec}`;
 }
 
-.controls {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
+audio.addEventListener('loadedmetadata', () => {
+  timeline.max = Math.floor(audio.duration);
+  durationDisplay.textContent = formatTime(audio.duration);
+});
 
-.ctrl-btn {
-  background: transparent;
-  border: 2px solid #0f0;
-  color: #0f0;
-  padding: 10px 14px;
-  border-radius: 50%;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+audio.addEventListener('timeupdate', () => {
+  timeline.value = Math.floor(audio.currentTime);
+  currentTimeDisplay.textContent = formatTime(audio.currentTime);
+});
 
-.ctrl-btn:hover {
-  background: #0f0;
-  color: #000;
-  box-shadow: 0 0 15px #0f0;
-}
+timeline.addEventListener('input', () => {
+  audio.currentTime = timeline.value;
+});
 
-.timeline {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
+audio.addEventListener('ended', () => nextTrack());
 
-#timeline {
-  flex-grow: 1;
-  accent-color: #0f0;
-}
+playPauseBtn.addEventListener('click', togglePlayPause);
+nextBtn.addEventListener('click', nextTrack);
+prevBtn.addEventListener('click', prevTrack);
 
-span {
-  font-size: 12px;
-  color: #0f0;
-}
+loadTrack(currentTrack);
+
+// 🔒 Prevent right-click, F12, and devtools
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
+    (e.ctrlKey && e.shiftKey && ['i', 'j'].includes(e.key.toLowerCase()))
+  ) e.preventDefault();
+});
